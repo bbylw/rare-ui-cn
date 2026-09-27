@@ -5,6 +5,7 @@ import { GitFork } from "lucide-react";
 
 import { GooeyNav, type GooeyNavItem } from "@/components/ui/gooey-nav";
 import { NotificationBell } from "@/components/ui/notification-bell";
+import { COMPONENTS } from "@/lib/rare-registry";
 
 // GooeyNav matches the active item by comparing href with usePathname(), and
 // trailingSlash makes that pathname end in a slash.
@@ -57,7 +58,13 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-2">
-          <NotificationBell count={22} max={99} variant="count" color="orange" size={34} />
+          <NotificationBell
+            count={COMPONENTS.length}
+            max={99}
+            variant="count"
+            color="orange"
+            size={34}
+          />
           <Link
             href="https://github.com/swamimalode07/rare-ui"
             target="_blank"
