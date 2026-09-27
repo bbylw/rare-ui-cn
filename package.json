@@ -8,7 +8,8 @@
     "build:static": "cross-env STATIC_EXPORT=true next build",
     "preview:static": "npx --yes serve@latest out",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "next typegen && tsc --noEmit"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.3.3",

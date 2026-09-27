@@ -31,8 +31,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # `next typegen` emits the route types (PageProps / LayoutProps) that the
+      # app relies on, so it has to run before a standalone tsc pass.
       - name: Type check
-        run: npx tsc --noEmit
+        run: npm run typecheck
 
       - name: Lint
         run: npm run lint
