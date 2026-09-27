@@ -132,6 +132,7 @@ npx shadcn@latest add swamimalode07/rare-ui/fluid-orb
 ## 设计说明
 
 - **品牌色**：`#fc4c01`（Rare UI 橙），在 `globals.css` 中注册为 `--brand`，并映射到 Tailwind 的 `text-brand` / `bg-brand`。
+- **品牌图标**：橙色圆角方块 + 白色 R，与页眉、页脚的标识一致。由 `src/app/icon.svg`（现代浏览器）、`src/app/favicon.ico`（16/32/48/64 多尺寸，兼容旧浏览器）与 `src/app/apple-icon.png`（iOS 180×180）三者组成，均为已提交的构建产物。
 - **深色优先**：`<html class="dark">` 固定深色，所有组件依赖的 CSS 变量都已对齐。
 - **中文排版**：字体栈在 Geist 之后追加 `PingFang SC` / `Hiragino Sans GB` / `Microsoft YaHei` / `Noto Sans SC`，中英混排不塌陷。
 - **动效可访问性**：站上的重动效组件全部遵循 `prefers-reduced-motion`，减少动效时自动降级。

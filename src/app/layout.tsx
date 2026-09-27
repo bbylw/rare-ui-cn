@@ -13,6 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  // Makes relative image/canonical URLs absolute in the emitted tags.
+  metadataBase: new URL("https://rare-ui.ndjp.net"),
   title: {
     default: "Rare UI — 稀有、开箱即用的 shadcn 组件注册表",
     template: "%s · Rare UI",
@@ -36,7 +38,16 @@ export const metadata: Metadata = {
       "22 个稀有组件与动画，一条命令安装进你的项目。代码归你所有，没有需要依赖的包。",
     type: "website",
     locale: "zh_CN",
-    url: "https://rareui.com",
+    url: "https://rare-ui.ndjp.net",
+    siteName: "Rare UI",
+    images: [
+      {
+        url: "/icon-512.png",
+        width: 512,
+        height: 512,
+        alt: "Rare UI",
+      },
+    ],
   },
 };
 
