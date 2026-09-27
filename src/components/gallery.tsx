@@ -69,6 +69,7 @@ export function Gallery() {
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="搜索组件、能力或标签…"
+            aria-label="搜索组件、能力或标签"
             className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
           />
           {query ? (
