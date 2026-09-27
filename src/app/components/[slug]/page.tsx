@@ -17,6 +17,9 @@ import {
   installCommand,
 } from "@/lib/rare-registry";
 
+// The site ships as a static export, so every slug must be known at build time.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return COMPONENTS.map((component) => ({ slug: component.slug }));
 }
@@ -61,12 +64,13 @@ export default async function ComponentDetailPage({
       <main className="flex-1">
         <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
           <nav className="mb-8 flex items-center gap-2 text-xs text-muted-foreground">
-            <Link href="/" className="transition-colors hover:text-foreground">
+            <Link href="/" prefetch={false} className="transition-colors hover:text-foreground">
               首页
             </Link>
             <span aria-hidden>/</span>
             <Link
               href="/components"
+              prefetch={false}
               className="transition-colors hover:text-foreground"
             >
               组件总览
@@ -197,6 +201,8 @@ export default async function ComponentDetailPage({
                       <Link
                         key={item.slug}
                         href={`/components/${item.slug}`}
+                        // Static export emits no per-route RSC payload to prefetch.
+                        prefetch={false}
                         className="group flex items-start justify-between gap-4 rounded-2xl border border-border bg-card/30 p-5 transition-colors hover:border-[#fc4c01]/50"
                       >
                         <div className="min-w-0">
@@ -283,6 +289,7 @@ export default async function ComponentDetailPage({
             {previous ? (
               <Link
                 href={`/components/${previous.slug}`}
+                prefetch={false}
                 className="group flex items-center gap-3 text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
                 <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-0.5" aria-hidden />
@@ -298,6 +305,7 @@ export default async function ComponentDetailPage({
             {next ? (
               <Link
                 href={`/components/${next.slug}`}
+                prefetch={false}
                 className="group flex items-center gap-3 text-right text-sm text-muted-foreground transition-colors hover:text-foreground sm:justify-end"
               >
                 <span>

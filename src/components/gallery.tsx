@@ -139,6 +139,9 @@ export function Gallery() {
 
                 <Link
                   href={`/components/${component.slug}`}
+                  // A static export does not emit per-route RSC payloads, so the
+                  // default prefetch would only produce 404s.
+                  prefetch={false}
                   className="flex items-center gap-1 text-xs text-muted-foreground transition-colors group-hover:text-[#fc4c01]"
                 >
                   查看文档与属性

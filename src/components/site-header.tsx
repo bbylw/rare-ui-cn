@@ -6,9 +6,11 @@ import { GitFork } from "lucide-react";
 import { GooeyNav, type GooeyNavItem } from "@/components/ui/gooey-nav";
 import { NotificationBell } from "@/components/ui/notification-bell";
 
+// GooeyNav matches the active item by comparing href with usePathname(), and
+// trailingSlash makes that pathname end in a slash.
 const NAV_ITEMS: GooeyNavItem[] = [
   { label: "总览", href: "/" },
-  { label: "组件", href: "/components" },
+  { label: "组件", href: "/components/" },
   { label: "快速开始", href: "/#quickstart" },
   { label: "许可", href: "/#license" },
 ];
@@ -45,6 +47,7 @@ export function SiteHeader() {
               <Link
                 key={entry.label}
                 href={entry.href ?? "#"}
+                prefetch={false}
                 className="whitespace-nowrap transition-colors hover:text-foreground"
               >
                 {entry.label}

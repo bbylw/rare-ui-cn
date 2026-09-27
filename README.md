@@ -84,6 +84,51 @@ npx shadcn@latest add swamimalode07/rare-ui/fluid-orb
 
 > `src/components/ui/**` 是注册表原样下发的第三方源码，已在 `eslint.config.mjs` 中排除出项目 lint 范围，以便将来升级注册表组件时保持零冲突。
 
+## 部署（GitHub Pages + 自定义域）
+
+站点部署在 **https://rare-ui.ndjp.net**，由 GitHub Actions 自动发布。
+
+```
+仓库  https://github.com/bbylw/rare-ui-cn
+工作流 .github/workflows/deploy-pages.yml
+产物  out/  （纯静态）
+域名  rare-ui.ndjp.net
+```
+
+**为什么是静态导出**
+
+全站 27 个路由在 `next build` 中都是 `○ Static` / `● SSG`，没有任何服务端数据依赖，所以直接导出成静态文件最省事：不需要 Node 运行时，CDN 缓存命中率最高，也没有免费的 serverless 额度限制。
+
+导出走环境变量开关，本地与其它托管平台完全不受影响：
+
+| 命令 | 行为 |
+| --- | --- |
+| `npm run build` | 常规构建，保留 SSR 能力，可部署到 Vercel / Cloudflare Workers |
+| `npm run build:static` | 加 `STATIC_EXPORT=true`，产出 `out/` 目录 |
+| `npm run preview:static` | 本地静态预览 `out/` |
+
+**流水线**
+
+`push` 到 `main` 后由 `.github/workflows/deploy-pages.yml` 执行：
+
+1. `npm ci`
+2. `tsc --noEmit` —— 类型不过就不发布
+3. `npm run lint`
+4. `npm run build:static`
+5. 上传 `out/` 并用 `actions/deploy-pages` 发布
+
+**自定义域需要的 DNS 记录**
+
+在 ndjp.net 的 DNS 控制台添加：
+
+| 类型 | 名称 | 值 |
+| --- | --- | --- |
+| `CNAME` | `rare-ui` | `bbylw.github.io` |
+
+`public/CNAME` 已写入 `rare-ui.ndjp.net`，会随产物一起发布，告诉 Pages 该用哪个域名。DNS 生效后到仓库 **Settings → Pages** 勾选 **Enforce HTTPS** 即可拿到证书。
+
+> 若换成仓库自带的 `bbylw.github.io/rare-ui-cn/` 地址访问，需要在 `next.config.ts` 里补 `basePath: "/rare-ui-cn"`；本站是按根域名部署的，所以没有设置。
+
 ## 设计说明
 
 - **品牌色**：`#fc4c01`（Rare UI 橙），在 `globals.css` 中注册为 `--brand`，并映射到 Tailwind 的 `text-brand` / `bg-brand`。

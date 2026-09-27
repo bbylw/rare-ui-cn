@@ -233,6 +233,8 @@ function ShowcaseCard({
         </div>
         <Link
           href={`/components/${slug}`}
+          // Static export has no per-route RSC payload, so prefetching 404s.
+          prefetch={false}
           className="mt-0.5 flex shrink-0 items-center gap-1 text-xs text-muted-foreground transition-colors group-hover:text-[#fc4c01]"
         >
           详情
@@ -293,6 +295,7 @@ export default function Home() {
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
                 <Link
                   href="/components"
+                  prefetch={false}
                   className="inline-flex h-11 items-center gap-2 rounded-xl bg-[#fc4c01] px-5 text-sm font-medium text-white transition-transform hover:scale-[1.02]"
                 >
                   <Blocks className="size-4" aria-hidden />
@@ -435,6 +438,7 @@ export default function Home() {
               </div>
               <Link
                 href="/components"
+                prefetch={false}
                 className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-border px-4 py-2.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
                 查看全部 {COMPONENTS.length} 个组件
@@ -483,6 +487,7 @@ export default function Home() {
                       <li key={component.slug}>
                         <Link
                           href={`/components/${component.slug}`}
+                          prefetch={false}
                           className="inline-flex rounded-lg border border-border px-2.5 py-1 text-xs text-muted-foreground transition-colors hover:border-[#fc4c01]/60 hover:text-foreground"
                         >
                           {component.title}
@@ -751,6 +756,7 @@ export default function Home() {
             />
             <Link
               href="/components"
+              prefetch={false}
               className="inline-flex h-11 items-center gap-2 rounded-xl bg-[#fc4c01] px-5 text-sm font-medium text-white transition-transform hover:scale-[1.02]"
             >
               打开组件总览

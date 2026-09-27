@@ -26,7 +26,7 @@ export default function ComponentsPage() {
           />
           <div className="relative mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
             <nav className="mb-6 flex items-center gap-2 text-xs text-muted-foreground">
-              <Link href="/" className="transition-colors hover:text-foreground">
+              <Link href="/" prefetch={false} className="transition-colors hover:text-foreground">
                 首页
               </Link>
               <span aria-hidden>/</span>
@@ -58,6 +58,7 @@ export default function ComponentsPage() {
             <div className="mt-8">
               <Link
                 href="/#quickstart"
+                prefetch={false}
                 className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
                 不知道从哪开始？先看快速开始

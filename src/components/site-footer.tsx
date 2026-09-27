@@ -81,6 +81,7 @@ export function SiteFooter() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
+                    prefetch={false}
                     {...(item.external
                       ? { target: "_blank", rel: "noreferrer" }
                       : {})}
