@@ -1,5 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+
+import { SITE_URL } from "@/lib/site";
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,7 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   // Makes relative image/canonical URLs absolute in the emitted tags.
-  metadataBase: new URL("https://rare-ui.ndjp.net"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Rare UI — 稀有、开箱即用的 shadcn 组件注册表",
     template: "%s · Rare UI",
@@ -38,7 +41,7 @@ export const metadata: Metadata = {
       "22 个稀有组件与动画，一条命令安装进你的项目。代码归你所有，没有需要依赖的包。",
     type: "website",
     locale: "zh_CN",
-    url: "https://rare-ui.ndjp.net",
+    url: SITE_URL,
     siteName: "Rare UI",
     images: [
       {
@@ -48,6 +51,11 @@ export const metadata: Metadata = {
         alt: "Rare UI",
       },
     ],
+  },
+  // The only OG image is a 512×512 square, so the square summary card is the
+  // honest choice — `summary_large_image` expects a 1200×630 creative.
+  twitter: {
+    card: "summary",
   },
 };
 
